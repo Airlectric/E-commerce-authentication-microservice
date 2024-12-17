@@ -116,6 +116,23 @@ RABBITMQ_PASSWORD = "guest"
 RABBITMQ_HOST = "localhost"
 RABBITMQ_PORT = 5672
 
+APPEND_SLASH = False
+
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Add this in your urls.py to serve the media files in development
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # Your existing URLs
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
